@@ -69,8 +69,9 @@ class TweetsByIdRunner:
                 self.tweets_by_id_context.cursor = None
             else:
                 parsed_list = get_all_tweets_from_json(response.text)
-                cursors = [it for it in parsed_list if isinstance(it, Cursor)]
-                cursor = cursors[0] if len(cursors) > 0 else None
+                #cursors = [it for it in parsed_list if isinstance(it, Cursor)]
+                #cursor = cursors[0] if len(cursors) > 0 else None
+                cursor = None # force the cursor to be None
                 user_tweet_raw = [it for it in parsed_list if isinstance(it, UserTweetRaw)]
                 self.tweets_by_id_context.add_downloaded_tweets_count_in_request(len(user_tweet_raw))
                 self.tweets_by_id_context.cursor = cursor
